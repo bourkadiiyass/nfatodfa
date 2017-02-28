@@ -64,7 +64,9 @@ LClosureS(state:number){
     var result:number[]  =   [];
     result.push(state);
     this.table[state]['e'].forEach(function(t:any){
+        if (result.indexOf(t) < 0){
         result.push(t);
+         }
     });
     return result;
 }

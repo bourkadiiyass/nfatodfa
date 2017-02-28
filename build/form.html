@@ -25,6 +25,8 @@
         <div *ngIf="automatumForm.get('symbols').errors.required">Required !</div>
         <div *ngIf="automatumForm.get('symbols').errors.pattern">Symbols does not match the pattern !</div>
         </div>
+        <br><br>
+        <h5> To use <strong>epsilon</strong>, use the symbol <strong>"e"</strong> </h5>
     </div>
     <button type="submit" class="btn btn-warning" [disabled]="!automatumForm.valid">Submit</button>
 </form>
