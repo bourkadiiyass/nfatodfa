@@ -1,0 +1,32 @@
+<form *ngIf="!show" [formGroup]="automatumForm"
+      (ngSubmit)="onSubmit(automatumForm.value)"
+>
+    <div class="form-group">
+        <label for="states">States</label>
+        <input name="states" type="text" class="form-control" formControlName="states" placeholder="0,1,2.." >
+        <div *ngIf="automatumForm.get('states').errors" class="error">
+           <div *ngIf="automatumForm.get('states').errors.required">Required !</div>
+           <div *ngIf="automatumForm.get('states').errors.pattern">States does not match the pattern !</div>
+           <div *ngIf="automatumForm.get('states').errors.inputSuccessive">States must be successive integers !</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="finals">Final states</label>
+        <input name="finals" type="text" class="form-control" formControlName="finals" placeholder="0,1,2.." >
+        <div *ngIf="automatumForm.get('finals').errors" class="error">
+        <div *ngIf="automatumForm.get('finals').errors.required">Required !</div>
+        <div *ngIf="automatumForm.get('finals').errors.pattern">Finals does not match the pattern !</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="symbols">Symbols</label>
+        <input name="symbols" type="text" class="form-control" formControlName="symbols" placeholder="a,b,c.." >
+        <div *ngIf="automatumForm.get('symbols').errors" class="error">
+        <div *ngIf="automatumForm.get('symbols').errors.required">Required !</div>
+        <div *ngIf="automatumForm.get('symbols').errors.pattern">Symbols does not match the pattern !</div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-warning" [disabled]="!automatumForm.valid">Submit</button>
+</form>
+
+<dn-transit *ngIf="show" [states]="ssMatrix.states" [finals]="ssMatrix.finals" [symbols]="ssMatrix.symbols" ></dn-transit>

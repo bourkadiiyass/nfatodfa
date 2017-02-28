@@ -1,0 +1,19 @@
+<form [formGroup]="transitionForm" >
+    <table>
+        <tr *ngFor="let st of states">
+            <td *ngFor="let sb of symbols">
+                <input type="text" class="form-control" formControlName="s{{st}}:{{sb}}" placeholder="s{{st}}:{{sb}}">
+                <div *ngIf="transitionForm.get('s'+ st +':'+ sb).errors" class="error">
+                    <div *ngIf="transitionForm.get('s'+ st +':'+ sb).errors.required">Required !</div>
+                    <div *ngIf="transitionForm.get('s'+ st +':'+ sb).errors.pattern">States does not match the pattern !</div>
+                </div>
+            </td>
+
+        </tr>
+    </table>
+    <br><br>
+    <button type="button" class="btn btn-warning" [disabled]="!transitionForm.valid" (click)="onSubmit(transitionForm.value)">Preview</button>
+    <button type="button" class="btn btn-warning" [disabled]="!transitionForm.valid" (click)="onSubmitC(transitionForm.value)">Convert</button>
+    <button type="button" class="btn btn-primary" [disabled]="!transitionForm.valid" (click)="home()">Go back</button>
+</form>
+
